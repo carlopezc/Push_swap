@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:01:27 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/20 11:25:17 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:36:43 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ int	fill_stack_a(t_list **stack_a, char **argv, int argc)
 	}
 	return (1);
 }
-

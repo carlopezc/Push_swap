@@ -6,46 +6,36 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:49:57 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/23 17:12:58 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:34:23 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/push_swap.h"
 
-t_list	*look_for_min(t_list **stack_a)
+t_list	*assign_last_utils(t_list **stack, t_list *tmp, t_list *higher)
 {
-	int		min;
-	t_list	*min_tmp;
-	t_list	*tmp;
-
-	tmp = *stack_a;
-	min = tmp->data;
-	min_tmp = tmp;
+	if (tmp && tmp->chunk == 0)
+		higher = *stack;
+	else
+	{
+		while (tmp && tmp->chunk != 0)
+			tmp = tmp->next;
+		higher = tmp;
+	}
 	while (tmp)
 	{
-		if (tmp->chunk != 0 && tmp->data == min && tmp->next)
-		{
-			tmp = tmp->next;
-			min = tmp->data;
-			min_tmp = tmp;
-		}
-		else if (tmp->chunk == 0 && tmp->data < min)
-		{
-			min = tmp->data;
-			min_tmp = tmp;
-			tmp = tmp->next;
-		}
-		else
-			tmp = tmp->next;
+		if (tmp->data > higher->data && tmp->chunk == 0)
+			higher = tmp;
+		tmp = tmp->next;
 	}
-	return (min_tmp);
+	return (higher);
 }
 
 void	assign_last(t_list **stack)
 {
 	t_list	*tmp;
 	t_list	*higher;
-	int	i;
+	int		i;
 
 	tmp = *stack;
 	higher = *stack;
@@ -53,23 +43,20 @@ void	assign_last(t_list **stack)
 	while (i < 5)
 	{
 		tmp = *stack;
-		if ((*stack)->chunk == 0)
-			higher = *stack;
-		else
-		{
-			while (tmp && tmp->chunk != 0)
-				tmp = tmp->next;
-			higher = tmp;
-		}
-		tmp = *stack;
-		while (tmp)
-		{
-			if (tmp->data > higher->data && tmp->chunk == 0)
-				higher = tmp;
-			tmp = tmp->next;
-		}
+		higher = assign_last_utils(stack, tmp, higher);
 		higher->chunk = -1;
 		i++;
+	}
+	return ;
+}
+
+void	add_last_chunk(t_list *tmp, int i)
+{
+	while (tmp)
+	{
+		if (tmp->chunk == 0)
+			tmp->chunk = i - 1;
+		tmp = tmp->next;
 	}
 	return ;
 }
@@ -97,12 +84,7 @@ int	assign_chunks(t_list **stack_a, int num, int size)
 		i++;
 	}
 	tmp = *stack_a;
-	while (tmp)
-	{
-		if (tmp->chunk == 0)
-			tmp->chunk = i - 1;
-		tmp = tmp->next;
-	}
+	add_last_chunk(tmp, i);
 	return (i - 1);
 }
 
@@ -120,16 +102,9 @@ int	set_chunks(t_list **stack_a, t_list **stack_b)
 	size = list_size(stack_a) - 5;
 	if (size <= 5)
 		chunks = assign_chunks(stack_a, size, size);
-	else if(size > 5 && size <= 100)
+	else if (size > 5 && size <= 100)
 		chunks = assign_chunks(stack_a, 4, size);
-	/*
-	else if (size > 100 && size <= 500)
-		chunks = assign_chunks(stack_a, 7, size);
-	else if (size > 500)
-		chunks = assign_chunks(stack_a, 11, size);
-	*/
 	else
 		chunks = assign_chunks(stack_a, 8, size);
-	//tenia puesto 5 y 11
 	return (chunks);
 }

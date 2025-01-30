@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:38 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/30 12:41:48 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:47:33 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,37 +59,17 @@ t_list	*choose_next_object(t_list **a, t_list **b, t_list *object)
 	t_list	*second;
 	t_list	*third;
 	t_list	*best;
-//	int	chunk;
-//
+
 	update_index(a, b);
-	/*
-	chunk = choose_chunk(b, object);
-	if (chunk == -1)
-		return (NULL);
-		*/
 	first = NULL;
 	best = NULL;
-	//first = NULL;
 	second = NULL;
 	third = NULL;
-//	print_data(a, b);
 	find_biggest_except2(b, &first, &object, NULL);
 	find_biggest_except2(b, &second, &first, &object);
 	find_biggest_except2(b, &third, &second, &first);
-	/*
-	if (first)
-		ft_printf("next first es %i\n", first->data);
-	if (second)
-		ft_printf("next second es %i\n", second->data);
-	if (third)
-		ft_printf("next third es %i\n", third->data);
-		*/
 	best = choose_cheaper(a, b, first, second);
 	best = choose_cheaper(a, b, best, third);
-	/*
-	if (best)
-		ft_printf("Next best es %i\n", best->data);
-		*/
 	return (best);
 }
 
@@ -134,13 +114,6 @@ void	make_movements(t_list **a, t_list **b, int flag, t_list *object)
 	if (flag == 3)
 	{
 		next = choose_next_object(a, b, object);
-		/*
-		if (next)
-			ft_printf("Next sigue siendo %i\n", next->data);
-		//falta el choose_next_object
-		ft_printf("comprueba index\n");
-		*/
-		//print_data(a, b);
 		if (next && next->index > (list_size(b) / 2))
 			rrr(a, b);
 		else
@@ -158,36 +131,20 @@ void	put_first_back(t_list **a, t_list **b, t_list *object)
 	t_list	*a_top;
 	t_list	*next;
 
-	//print_data(a, b);
 	update_index(a, b);
 	b_moves = calculate_movements(b, object);
-	//ft_printf("moves son %i\n", b_moves);
-	/*
-	if (object)
-		ft_printf("Object es %i\n", object->data);
-		*/
 	a_top = *a;
 	flag = 0;
 	if (a_top && object && a_top->next && a_top->data < object->data
 		&& (a_top->next)->data > object->data)
-	{
-		//ft_printf("flag 1\n");
 		flag = 1;
-	}
 	else if (a_top && object && a_top->next && a_top->data < object->data
 		&& (a_top->next)->data < object->data)
 	{
 		flag = 2;
 		next = choose_next_object(a, b, object);
-		/*
-		if (next)
-			ft_printf("Next es %i\n", next->data);
-			*/
 		if (next && next->index > (list_size(b) / 2))
-		{
-			//ft_printf("usa next\n");
 			flag = 3;
-		}
 	}
 	final_moves_to_a(b_moves, object, a, b);
 	make_movements(a, b, flag, object);
@@ -282,25 +239,12 @@ void	move_back_to_a(t_list **stack_a, t_list **stack_b)
 			while (best)
 			{
 				best = NULL;
-				/*
-				if (first)
-					ft_printf("First %i\n", first->data);
-				if (second)
-					ft_printf("Second %i\n", second->data);
-				if (third)
-					ft_printf("Third %i\n", third->data);
-					*/
 				best = choose_cheaper(stack_a, stack_b, first, second);
 				best = choose_cheaper(stack_a, stack_b, best, third);
 				if (!best)
 					break ;
-				/*
-				if (best)
-					ft_printf("best es %i\n", best->data);
-					*/
 				put_first_back(stack_a, stack_b, best);
 				put_null(best, &first, &second, &third);
-				//print_data(stack_a, stack_b);
 			}
 		}
 	}
