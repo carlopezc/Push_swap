@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_sort.c                                       :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:48:55 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/27 16:20:59 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:44:55 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	check_order(t_list **stack_a, t_list **stack_b)
 		return ;
 	chunk = (*stack_a)->chunk;
 	data = (*stack_a)->data;
-	if (search_chunk(stack_b, chunk) < 2 && is_smallest(stack_b, data))
+	if (find_chunk(stack_b, chunk) < 2 && is_smallest(stack_b, data))
 		return (pb(stack_b, stack_a));
 	return (pass_and_swap(data, chunk, stack_b, stack_a));
 }
@@ -112,30 +112,4 @@ void	move_back(t_list **stack_a, t_list **stack_b)
 		tmp = *stack_b;
 	}
 	return ;
-}
-
-t_list	*find_last(t_list **stack_a)
-{
-	t_list	*tmp;
-
-	tmp = *stack_a;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
-}
-
-int	search_chunk(t_list **stack_a, int i)
-{
-	t_list	*tmp;
-	int		count;
-
-	tmp = *stack_a;
-	count = 0;
-	while (tmp)
-	{
-		if (tmp->chunk == i)
-			count++;
-		tmp = tmp->next;
-	}
-	return (count);
 }

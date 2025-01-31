@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 17:48:59 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/31 11:03:32 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:30:14 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,15 @@ int	ft_strlen(char *str)
 void	free_list(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp;
-	t_list	*tmp_next;
 
 	if (stack_a)
 	{
 		tmp = *stack_a;
 		while (tmp)
 		{
-			tmp_next = tmp->next;
-			free(tmp);
-			tmp = tmp_next;
+			tmp = tmp->next;
+			if (tmp)
+				free(tmp->prev);
 		}
 		free(stack_a);
 	}
@@ -79,9 +78,9 @@ void	free_list(t_list **stack_a, t_list **stack_b)
 		tmp = *stack_b;
 		while (tmp)
 		{
-			tmp_next = tmp->next;
-			free(tmp);
-			tmp = tmp_next;
+			tmp = tmp->next;
+			if (tmp)
+				free(tmp->prev);
 		}
 		free(stack_b);
 	}
