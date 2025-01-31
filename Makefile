@@ -6,7 +6,7 @@
 #    By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 12:23:06 by carlopez          #+#    #+#              #
-#    Updated: 2025/01/30 16:35:48 by carlopez         ###   ########.fr        #
+#    Updated: 2025/01/31 15:15:31 by carlopez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ PINK_FUCHSIA    = \033[38;2;255;20;147m
 
 RESET  = \033[0m
 
-SRC = src/assign_chunks_utils.c src/utils_build_stack.c src/utils_push_swap.c src/build_stack.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/assign_chunks.c src/utils_sort.c src/special_sort.c src/sort.c src/utils.c
+SRC = src/find_utils.c src/check_utils.c src/utils_special_sort.c src/find_utils_extra.c src/sort_utils_extra.c src/sort_utils_extra2.c src/assign_chunks_utils.c src/utils_build_stack.c src/utils_push_swap.c src/build_stack.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/assign_chunks.c src/special_sort.c src/sort.c src/sort_utils.c
 OBJ = $(SRC:.c=.o)
 
 all: 
