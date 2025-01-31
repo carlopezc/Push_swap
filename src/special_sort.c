@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:45:12 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/30 16:57:43 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:54:59 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,39 +102,34 @@ void	sort_four(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
+void	aux_sort_five(t_list **stack_a, t_list **stack_b, t_list **first)
+{
+	int	moves;
+
+	update_index(stack_a, stack_b);
+	*first = find_lowest(stack_a);
+	if (*first && (*first)->index > (list_size(stack_a) / 2))
+	{
+		moves = (list_size(stack_a) - (*first)->index);
+		while (moves-- > 0)
+			rra(stack_a);
+	}
+	else
+	{
+		moves = (*first)->index;
+		while (moves-- > 0)
+			ra(stack_a);
+	}
+	return ;
+}
+
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*first;
-	int		moves;
 
-	first = find_lowest(stack_a);
-	if (first->index > (list_size(stack_a) / 2))
-	{
-		moves = (list_size(stack_a) - first->index);
-		while (moves-- > 0)
-			rra(stack_a);
-	}
-	else
-	{
-		moves = first->index;
-		while (moves-- > 0)
-			ra(stack_a);
-	}
+	aux_sort_five(stack_a, stack_b, &first);
 	pb(stack_b, stack_a);
-	first = find_lowest(stack_a);
-	update_index(stack_a, stack_b);
-	if (first->index > (list_size(stack_a) / 2))
-	{
-		moves = (list_size(stack_a) - first->index);
-		while (moves-- > 0)
-			rra(stack_a);
-	}
-	else
-	{
-		moves = first->index;
-		while (moves-- > 0)
-			ra(stack_a);
-	}
+	aux_sort_five(stack_a, stack_b, &first);
 	if (is_ordered(stack_a))
 		return (pa(stack_a, stack_b));
 	pb(stack_b, stack_a);

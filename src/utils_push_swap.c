@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 17:48:59 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/30 16:08:00 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:03:32 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	fill_index(t_list **stack)
 {
 	t_list	*tmp;
-	int	i;
+	int		i;
 
 	tmp = *stack;
 	i = 0;

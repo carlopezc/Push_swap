@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:50:47 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/30 16:35:19 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:22:19 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		sum_movements(t_list **a, t_list **b, t_list *object);
 void	final_moves_to_a(int moves, t_list *object, t_list **a, t_list **b);
 //funciones find
 void	find_top_three_except(t_list **first, t_list **second, t_list **third, t_list *object);
-void	find_biggest_except2(t_list **stack, t_list **object, t_list **except, t_list **except_2);
+void	find_two_exc(t_list **stack, t_list **obj, t_list **exc, t_list **exc2);
 void	find_biggest_except(t_list **stack, t_list **object, t_list **except);
 void	find_top_three(t_list **stack, t_list **first, t_list **second, t_list **third);
 int		find_delimiter(int chunk, t_list **stack);

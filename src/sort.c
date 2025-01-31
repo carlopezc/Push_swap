@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:38 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/30 16:47:33 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:21:47 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	order_a(t_list	**a, t_list **b)
 {
 	t_list	*lowest;
-	int	moves;
-	int	size;
+	int		moves;
+	int		size;
 
 	lowest = find_lowest(a);
 	size = list_size(a);
@@ -65,9 +65,9 @@ t_list	*choose_next_object(t_list **a, t_list **b, t_list *object)
 	best = NULL;
 	second = NULL;
 	third = NULL;
-	find_biggest_except2(b, &first, &object, NULL);
-	find_biggest_except2(b, &second, &first, &object);
-	find_biggest_except2(b, &third, &second, &first);
+	find_two_exc(b, &first, &object, NULL);
+	find_two_exc(b, &second, &first, &object);
+	find_two_exc(b, &third, &second, &first);
 	best = choose_cheaper(a, b, first, second);
 	best = choose_cheaper(a, b, best, third);
 	return (best);
@@ -223,7 +223,7 @@ void	move_back_to_a(t_list **stack_a, t_list **stack_b)
 	t_list	*second;
 	t_list	*third;
 	t_list	*best;
-	int	i;
+	int		i;
 
 	first = NULL;
 	second = NULL;
