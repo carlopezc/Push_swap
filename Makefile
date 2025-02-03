@@ -6,7 +6,7 @@
 #    By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 12:23:06 by carlopez          #+#    #+#              #
-#    Updated: 2025/01/31 15:15:31 by carlopez         ###   ########.fr        #
+#    Updated: 2025/02/03 17:32:18 by carlopez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,17 @@ PINK_FUCHSIA    = \033[38;2;255;20;147m
 
 RESET  = \033[0m
 
-SRC = src/find_utils.c src/check_utils.c src/utils_special_sort.c src/find_utils_extra.c src/sort_utils_extra.c src/sort_utils_extra2.c src/assign_chunks_utils.c src/utils_build_stack.c src/utils_push_swap.c src/build_stack.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/assign_chunks.c src/special_sort.c src/sort.c src/sort_utils.c
-OBJ = $(SRC:.c=.o)
+SRC = src/find_utils.c src/check_utils.c src/utils_special_sort.c src/find_utils_extra.c src/sort_utils_extra.c src/sort_utils_extra2.c src/assign_chunks_utils.c src/assign_chunks.c src/special_sort.c src/sort.c src/sort_utils.c
+BONUS_SRC = bonus/check.c bonus/Get_next_line/get_next_line.c bonus/Get_next_line/get_next_line_utils.c
+SHARED_SRC = src/utils_build_stack.c src/build_stack.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/utils_push_swap.c
+
+ifndef BONUS
+	OBJ = $(SRC:.c=.o) $(SHARED_SRC:.c=.o)
+else
+	OBJ = $(BONUS_SRC:.c=.o) $(SHARED_SRC:.c=.o)
+	MAIN = bonus/main.c
+	NAME = checker
+endif
 
 all: 
 	@echo "$(PINK_FUCHSIA)\n MAKING PUSH_SWAP\n$(RESET)"
@@ -53,6 +62,9 @@ $(PRINTF):
 	@echo "$(PINK_LIGHT)🡲 Creating object...$(RESET)"
 	$(CC) $(CCFLAGS) -c $< -o $@
 
+bonus:
+	@make BONUS=1 --no-print-directory
+
 clean:
 	@echo "$(RED_BRIGHT)\nThrowing object files of Push_swap to 🗑️$(RESET)"
 	rm -f $(OBJ)
@@ -68,4 +80,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

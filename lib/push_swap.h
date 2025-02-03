@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:50:47 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/31 15:34:29 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:25:55 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct list
 	int			index;
 	int			delimiter;
 }	t_list;
+char	*get_next_line(int fd);
+int	check_and_make(t_list **a, t_list **b);
 int		ft_strlen(char *str);
 int		find_chunk(t_list **stack_a, int i);
 int		check_str(char *str);
