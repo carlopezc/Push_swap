@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:45:12 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/31 13:41:12 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:47:37 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,6 @@ void	sort_three(t_list **stack_a)
 	return (ra(stack_a), sa(stack_a));
 }
 
-void	sort_four(t_list **stack_a, t_list **stack_b)
-{
-	pb(stack_b, stack_a);
-	sort_three(stack_a);
-	pass_ordered(stack_b, stack_a);
-	return ;
-}
-
 void	aux_sort_five(t_list **stack_a, t_list **stack_b, t_list **first)
 {
 	int	moves;
@@ -78,6 +70,19 @@ void	aux_sort_five(t_list **stack_a, t_list **stack_b, t_list **first)
 		while (moves-- > 0)
 			ra(stack_a);
 	}
+	return ;
+}
+
+void	sort_four(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*first;
+
+	aux_sort_five(stack_a, stack_b, &first);
+	if (is_ordered(stack_a))
+		return (pa(stack_a, stack_b));
+	pb(stack_b, stack_a);
+	sort_three(stack_a);
+	pa(stack_a, stack_b);
 	return ;
 }
 
