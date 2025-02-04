@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:38 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/31 14:34:45 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:33:57 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,15 @@ void	choose_objects(t_list **stack_a, t_list **stack_b, int i, int delimiter)
 	return ;
 }
 
-void	sort(t_list **stack_a, t_list **stack_b, int chunks)
+void	sort(t_list **stack_a, t_list **stack_b)
 {
 	int	i;
 	int	delimiter;
+	int	chunks;
 
+	chunks = set_chunks(stack_a, stack_b);
+	if (chunks == -1)
+		return ;
 	i = 1;
 	while (i <= chunks)
 	{

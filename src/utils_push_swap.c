@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 17:48:59 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/31 11:30:14 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:28:53 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,21 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	free_list(t_list **stack_a, t_list **stack_b)
+void	free_list(t_list **stack)
 {
 	t_list	*tmp;
+	t_list	*tmp_next;
 
-	if (stack_a)
+	if (stack)
 	{
-		tmp = *stack_a;
+		tmp = *stack;
 		while (tmp)
 		{
-			tmp = tmp->next;
-			if (tmp)
-				free(tmp->prev);
+			tmp_next = tmp->next;
+			free(tmp);
+			tmp = tmp_next;
 		}
-		free(stack_a);
-	}
-	if (stack_b)
-	{
-		tmp = *stack_b;
-		while (tmp)
-		{
-			tmp = tmp->next;
-			if (tmp)
-				free(tmp->prev);
-		}
-		free(stack_b);
+		free(stack);
 	}
 	return ;
 }

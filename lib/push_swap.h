@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:50:47 by carlopez          #+#    #+#             */
-/*   Updated: 2025/02/03 17:25:55 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:29:15 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct list
 	int			delimiter;
 }	t_list;
 char	*get_next_line(int fd);
-int	check_and_make(t_list **a, t_list **b);
+int		check_and_make(t_list **a, t_list **b);
 int		ft_strlen(char *str);
 int		find_chunk(t_list **stack_a, int i);
 int		check_str(char *str);
@@ -48,7 +48,7 @@ t_list	*find_biggest(t_list **stack);
 t_list	*find_last(t_list **stack_a);
 t_list	*choose_cheaper(t_list **a, t_list **b, t_list *first, t_list *second);
 t_list	*choose_next_object(t_list **a, t_list **b, t_list *object);
-void	free_list(t_list **stack_a, t_list **stack_b);
+void	free_list(t_list **stack);
 void	put_null(t_list *best, t_list **first, t_list **second, t_list **third);
 void	order_a(t_list	**a, t_list **b);
 void	update_index(t_list **stack_a, t_list **stack_b);
@@ -65,7 +65,7 @@ void	make_movements(t_list **a, t_list **b, int flag, t_list *object);
 void	pass_ordered(t_list **stack_b, t_list **stack_a);
 void	fill_index(t_list **stack);
 void	put_first_back(t_list **a, t_list **b, t_list *object);
-void	sort(t_list **stack_a, t_list **stack_b, int chunks);
+void	sort(t_list **stack_a, t_list **stack_b);
 void	ss(t_list **stack_a, t_list **stack_b);
 void	sa(t_list **stack_a);
 void	sb(t_list **stack_b);

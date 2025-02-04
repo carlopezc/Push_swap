@@ -6,7 +6,7 @@
 #    By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 12:23:06 by carlopez          #+#    #+#              #
-#    Updated: 2025/02/03 17:32:18 by carlopez         ###   ########.fr        #
+#    Updated: 2025/02/04 14:06:16 by carlopez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,15 +33,17 @@ PINK_FUCHSIA    = \033[38;2;255;20;147m
 
 RESET  = \033[0m
 
-SRC = src/find_utils.c src/check_utils.c src/utils_special_sort.c src/find_utils_extra.c src/sort_utils_extra.c src/sort_utils_extra2.c src/assign_chunks_utils.c src/assign_chunks.c src/special_sort.c src/sort.c src/sort_utils.c
-BONUS_SRC = bonus/check.c bonus/Get_next_line/get_next_line.c bonus/Get_next_line/get_next_line_utils.c
-SHARED_SRC = src/utils_build_stack.c src/build_stack.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/utils_push_swap.c
+SRC = src/find_utils.c src/check_utils.c src/utils_special_sort.c src/find_utils_extra.c src/sort_utils_extra.c src/sort_utils_extra2.c src/assign_chunks_utils.c src/assign_chunks.c src/special_sort.c src/sort.c src/sort_utils.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c 
+BONUS_SRC = bonus/check_bonus.c bonus/Get_next_line/get_next_line.c bonus/Get_next_line/get_next_line_utils.c bonus/push_bonus.c bonus/swap_bonus.c bonus/rotate_bonus.c bonus/reverse_rotate_bonus.c 
+SHARED_SRC = src/utils_build_stack.c src/build_stack.c src/utils_push_swap.c
+
+OBJ_BONUS = $(BONUS_SRC:.c=.o) $(SHARED_SRC:.c=.o)
 
 ifndef BONUS
 	OBJ = $(SRC:.c=.o) $(SHARED_SRC:.c=.o)
 else
 	OBJ = $(BONUS_SRC:.c=.o) $(SHARED_SRC:.c=.o)
-	MAIN = bonus/main.c
+	MAIN = bonus/main_bonus.c
 	NAME = checker
 endif
 
@@ -67,7 +69,7 @@ bonus:
 
 clean:
 	@echo "$(RED_BRIGHT)\nThrowing object files of Push_swap to 🗑️$(RESET)"
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_BONUS)
 	@echo "$(RED_BRIGHT)\nThrowing object files of Printf to 🗑️$(RESET)"
 	rm -f $(PRINTFDIR)/*.o
 
@@ -75,7 +77,7 @@ fclean: clean
 	@echo "$(RED_BRIGHT)\nDestroying printf 💥$(RESET)"
 	rm -f $(PRINTF)
 	@echo "$(RED_BRIGHT)\nDestroying program 💥$(RESET)"
-	rm -f $(NAME)
+	rm -f $(NAME) checker
 	@echo "\n$(BOLD_GREEN) Bye bye 👋 $(RESET)\n" 
 
 re: fclean all
