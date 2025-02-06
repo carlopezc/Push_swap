@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:01:41 by carlopez          #+#    #+#             */
-/*   Updated: 2025/02/04 14:52:02 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:44:00 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	aux_make(t_list **a, t_list **b, char *instruction)
 		return (rrb(b), 1);
 	else if (ft_strncmp(instruction, "rrr", ft_strlen(instruction)) == 0)
 		return (rrr(a, b), 1);
-	return (write(2, "Error\n", 6), 0);
+	return (ft_printf("Error\n"), 0);
 }
 
 int	make(t_list **a, t_list **b, char *instruction)
 {
 	if (ft_strlen(instruction) < 2)
-		return (write(2, "Error\n", 6), 0);
+		return (ft_printf("Error\n"), 0);
 	if (ft_strncmp(instruction, "sa", ft_strlen(instruction)) == 0)
 		return (sa(a), 1);
 	else if (ft_strncmp(instruction, "sb", ft_strlen(instruction)) == 0)

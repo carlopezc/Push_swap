@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:10:03 by carlopez          #+#    #+#             */
-/*   Updated: 2025/01/31 10:56:39 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:53:49 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	check_length(char *str)
 	while (str && str[i + 1] != '\0' && str[i] == '0')
 		i++;
 	str = str + i;
-	if ((str[0] == '-' && ft_strlen(str) > 11)
-		|| (str[0] != '-' && ft_strlen(str) > 10))
+	if (((str[0] == '-' || str[0] == '+') && ft_strlen(str) > 11)
+		|| ((str[0] != '-' && str[0] != '+') && ft_strlen(str) > 10))
 		return (0);
 	return (1);
 }
@@ -40,7 +40,7 @@ int	check_str(char *str)
 	if (!str || !check_length(str))
 		return (0);
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
@@ -57,9 +57,10 @@ long	ft_atol(char *str)
 
 	i = 0;
 	sign = 1;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		sign = -1;
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
 	num = 0;
