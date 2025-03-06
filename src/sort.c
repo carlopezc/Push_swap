@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:38 by carlopez          #+#    #+#             */
-/*   Updated: 2025/02/04 14:33:57 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:37:26 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void	aux_move_back_a(t_list **stack_a, t_list **stack_b)
 
 void	move_back_to_a(t_list **stack_a, t_list **stack_b)
 {
-	int		i;
-
-	i = 0;
 	while (stack_b && *stack_b)
 	{
 		update_index(stack_a, stack_b);

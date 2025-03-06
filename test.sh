@@ -18,7 +18,7 @@ if [ "$RANGO" -eq 0 ] || [ "$RANGO" -eq 1 ]; then
         rm -f test.txt checker.txt
         ARG=$(shuf -i 1-$RANGO -n $RANGO | tr '\n' ' ') 
         ./push_swap $ARG > test.txt
-        ./push_swap $ARG | ./checker $ARG > checker.txt
+        ./push_swap $ARG | ./checker_linux $ARG > checker.txt
 
         if [ "$1" -eq 0 ] && [ "$RANGO" -eq 501 ]; then
             break
@@ -42,7 +42,7 @@ if [ "$RANGO" -eq 0 ] || [ "$RANGO" -eq 1 ]; then
         if [ "$ULTIMA_LINEA" = "OK" ]; then
 			echo -e "\033[42m [OK] $VAR (ARGS: $RANGO)\033[0m $ARG"  # Fondo rojo
         else
-            echo -e "\033[41m [KO] BAD SORT (ARGS: $RANGO)\033[0m $ARG"  # Fondo rojo
+            echo "\033[41m [KO] BAD SORT ULTIMA LINEA NO ES OK (ARGS: $RANGO)\033[0m $ARG"  # Fondo rojo
             break
         fi
 
@@ -72,11 +72,11 @@ else
 
         if [ "$VAR" -lt "$UMBRAL" ] && [ "$ULTIMA_LINEA" = "OK" ]; then
             echo -e "\033[42m [OK] $VAR (Promedio: $PROMEDIO)(MAX: $MAXMOVES MIN: $MINMOVES)\033[0m"  # Fondo verde
-        elif [ "$ULTIMA_LINEA" = "OK" ]; then
+        elif [ "$ULTIMA_LINEA" = "KO" ]; then
             echo -e "\033[41m [KO] $VAR (Promedio: $PROMEDIO)\033[0m $ARG"  # Fondo rojo
             break
         else
-            echo -e "\033[41m [KO] BAD SORT\033[0m $ARG"  # Fondo rojo
+            echo -e "\033[41m [KO] BAD SORT NO SALE KO\033[0m $ARG"  # Fondo rojo
             break
         fi
     done
