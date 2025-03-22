@@ -44,14 +44,16 @@ int	aux_make(t_list **a, t_list **b, char *instruction)
 		return (rrb(b), 1);
 	else if (ft_strncmp(instruction, "rrr", ft_strlen(instruction)) == 0)
 		return (rrr(a, b), 1);
-	return (ft_printf("Error\n"), 0);
+	return (ft_printf("Error no reconoce accion\n"), 0);
 }
 
 int	make(t_list **a, t_list **b, char *instruction)
 {
+	/*
 	if (ft_strlen(instruction) < 2)
-		return (ft_printf("Error\n"), 0);
-	if (ft_strncmp(instruction, "sa", ft_strlen(instruction)) == 0)
+		return (ft_printf("Error en strlen, la instruccion es %s, y el su tamano %d\n", instruction, ft_strlen(instruction)), 0);*/
+	//ft_printf("Instruction es %s\n", instruction);
+		if (ft_strncmp(instruction, "sa", ft_strlen(instruction)) == 0)
 		return (sa(a), 1);
 	else if (ft_strncmp(instruction, "sb", ft_strlen(instruction)) == 0)
 		return (sb(b), 1);
@@ -69,17 +71,20 @@ int	check_and_make(t_list **a, t_list **b)
 	char	*instruction;
 
 	instruction = get_next_line(0);
+	ft_printf("instruction es %s\n", instruction);
 	if (!instruction)
 		return (1);
 	else if (!make(a, b, instruction))
 		return (0);
 	while (instruction)
 	{
+		free(instruction);
 		instruction = get_next_line(0);
+		ft_printf("instruction es %s\n", instruction);
 		if (!instruction)
 			return (1);
 		else if (!make(a, b, instruction))
-			return (0);
+			return (free(instruction), 0);
 	}
 	return (1);
 }

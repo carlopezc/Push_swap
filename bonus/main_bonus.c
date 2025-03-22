@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	*stack_a = NULL;
 	if (!fill_stack_a(stack_a, argv, argc))
-		return (free_list(stack_a), write(2, "sError\n", 7), -1);
+		return (free_list(stack_a), write(2, "Error en fill stack a\n", 50), -1);
 	else if (argc == 2)
 		return (free_list(stack_a), 0);
 	stack_b = (t_list **)malloc(sizeof(t_list *));
