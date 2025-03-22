@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	*stack_a = NULL;
 	if (!fill_stack_a(stack_a, argv, argc))
-		return (free_list(stack_a), write(2, "Error\n", 6), -1);
+		return (free_list(stack_a), write(2, "en fill stack Error\n", 30), -1);
 	else if (argc == 2)
 		return (free_list(stack_a), 0);
 	fill_index(stack_a);
