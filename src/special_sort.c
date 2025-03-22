@@ -91,6 +91,8 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	t_list	*first;
 
 	aux_sort_five(stack_a, stack_b, &first);
+	if (is_ordered(stack_a))
+		return ;
 	pb(stack_b, stack_a);
 	aux_sort_five(stack_a, stack_b, &first);
 	if (is_ordered(stack_a))
